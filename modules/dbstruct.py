@@ -5,12 +5,14 @@ from sqlalchemy.orm import relationship, backref
 Base = declarative_base()
 
 class Order(Base):
-    __tablename__ = 'order'
-    order_id = Column(Integer, primary_key=True)
-    customer_id = Column(Integer,ForeignKey('customer.customer_id'))
-    order_date = Column(DateTime)    
- 
-    orderproducts = relationship('OrderProduct')
+	__tablename__ = 'order'
+	order_id = Column(Integer, primary_key=True)
+	customer_id = Column(Integer,ForeignKey('customer.customer_id'))
+	message_id = Column(Integer)
+	order_datetime = Column(DateTime)    
+	order_price = Column(Integer)
+	
+	orderproducts = relationship('OrderProduct')
     
     
 class Customer(Base):
@@ -26,7 +28,6 @@ class Customer(Base):
 class Product(Base):
     __tablename__ = 'product'
     product_id = Column(Integer, primary_key=True)
-    vendorcode = Column(String)
     productcategory_id = Column(Integer,ForeignKey('productcategory.productcategory_id'))
     product_title = Column(String)
 
